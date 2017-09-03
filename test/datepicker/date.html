@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css">
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="locales/bootstrap-datepicker.zh-CN.min.js"></script>
+</head>
+<body>
+  <!-- <input data-provide="datepicker" data-date-language='zh-CN' data-date-format='yyyy-mm-dd' data-date-end-date='-3d'> -->
+  <input id="date">
+  <script type="text/javascript">
+    $('#date').datepicker({
+      language : 'zh-CN',
+      format:'yyyy-mm-dd'
+    });
+  </script>
+</body>
+</html>

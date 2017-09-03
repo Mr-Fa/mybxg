@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript">
+  /*
+  cookie的作用：维持客户端和服务器的状态
+
+  cookie操作
+  设置cookie
+  document.cookie = 'uname=lisi'
+  获取cookie
+  console.log(document.cookie);
+
+  cookie与域名绑定，不允许跨域获取
+  路径 /a/b/c
+  在父路径下面设置的cookie，在所有的子路径下都可以访问，但是反之不行
+
+  cookie分类：
+  1、会话cookie
+  2、持久cookie
+
+  cookie的值最多存储4k大小 4096个字符
+  cookie有安全问题
+
+  */
+  var date = new Date();
+  date.setDate(date.getDate() + 3);
+  // // // console.log(date.getDate());
+  // document.cookie = 'name=12; expires=' + date.toGMTString() + '; path=/';
+  // document.cookie = 'abc=123';
+  // console.log(document.cookie);// age=12; name=12; abc=123
+
+  // 封装一个设置cookie的操作
+  function setCookie(key,value,options){
+    var str = key + '=' + value + '; ';
+    for(var key in options){
+      str += key + '=' + options[key] + '; ';
+    }
+    if(str){
+      str = str.substring(0,str.length - 2);
+    }
+    document.cookie = str;
+  }
+
+  setCookie('hello','nihao',{
+    expires : date.toGMTString(),// 必须是格林威治时间
+    path : '/'
+  })
+  // 封装一个获取指定cookie值的方法
+  // function getCookie(key){
+  //   var all = document.cookie;
+  //   var retvalue = null;
+  //   if(all){
+  //     var kvs = all.split('; ');
+  //     kvs.forEach(function(item){
+  //       var kv = item.split('=');
+  //       if(key == kv[0]){
+  //         retvalue = kv[1];
+  //         return false; // 终止循环
+  //       }
+  //     });
+  //     return retvalue;
+  //   }
+  // }
+  // var ret = getCookie('age');
+  // console.log(ret);
+  </script>
+</head>
+<body>
+  <div>cookie</div>
+</body>
+</html>

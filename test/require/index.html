@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript">
+  /*
+  requirejs使用步骤
+  1、引入require.js文件
+  2、定义模块和依赖
+  3、通过require方法调用入口模块
+  4、入口模块又依赖别的模块，别的模块再依赖别的模块
+
+  依赖树
+  */
+  </script>
+  <!-- <script data-main="main" src="require.js"></script> -->
+  <script src="require.js"></script>
+  <script type="text/javascript">
+    require.config({
+      baseUrl : '/require/js/common',// 设置模块搜索的基准路径
+      paths : { // 配置模块的别名
+        u : 'util/util',
+        m : '../../main1',
+        jquery : '../../jquery',
+        abc : 'util/abc'
+      },
+      shim : {// 把非标准的模块转换为标准模块
+        abc : {
+          exports : 'foo' // 导出非标准模块的成员
+        }
+      }
+    });
+
+    require(['m'],function(m){
+      console.log(m);
+    })
+  </script>
+</head>
+<body>
+  <div id="content">require</div>
+</body>
+</html>

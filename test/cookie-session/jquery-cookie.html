@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery.cookie.js"></script>
+  <script type="text/javascript">
+  /*
+  jquery插件操作cookie
+  1、设置cookie
+  2、获取cookie
+  3、删除cookie
+  */
+
+  // $.cookie('name', 'value');
+  // $.cookie('aaa', '123', { expires: 7 ,path : '/'});
+
+  // var ret = $.cookie('aaa');
+  // console.log(ret);
+  // console.log($.cookie('aaa'));
+
+  // console.log($.cookie().abc);
+
+  $.removeCookie('aaa');
+  console.log($.cookie());
+  </script>
+</head>
+<body>
+  <div>jquery-cookie</div>
+</body>
+</html>

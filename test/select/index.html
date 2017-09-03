@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery.region.js"></script>
+</head>
+<body>
+  <div id="container">
+      <select name="" id="p" data-id='130000'>
+          <option value="0">请选择省...</option>
+      </select>
+      <select name="" id="c" data-id='130400'>
+          <option value="0">请选择市...</option>
+      </select>
+      <select name="" id="d" data-id='130428'>
+          <option value="0">请选择区/县...</option>
+      </select>
+  </div>
+  <script type="text/javascript">
+    $('#container').region({
+      url : './region.json'
+    });
+  </script>
+</body>
+</html>

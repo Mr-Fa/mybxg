@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- <script async type="text/javascript" src="http://doc.studyit.com/data.php"></script> -->
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript">
+  /*
+  什么是jsonp？跨域获取数据的一种解决方案
+
+  jsonp的原理是什么？利用script标签的src属性发送跨域请求
+
+  动态创建script标签，通过标签src属性发送跨域请求，服务器响应内容是js代码（函数调用）
+  foo(参数);
+  */
+  // console.log(abc);
+
+  // 这种请求方式就是异步的
+  // var script = document.createElement('script');
+  // script.src="http://doc.studyit.com/data.php?cb=hello";
+  // var head = document.getElementsByTagName('head')[0];
+  // head.appendChild(script);
+
+  // function hello(data){
+  //   console.log(data.uname);
+  // }
+  // console.log(abc);
+  // ----------------------------------------
+  // $.ajax({
+  //   url : 'http://doc.studyit.com/data.php',
+  //   // jsonp : 'cb',// 设置等号左侧的名称
+  //   // jsonpCallback : 'hello',// 设置等号右侧的名称（回调函数名称）
+  //   dataType : 'jsonp',
+  //   success : function(data){
+  //     console.log(data);
+  //   }
+  // });
+
+  function ajax(param){
+    // 默认参数
+    var defaults = {
+      url : '#',
+      jsonp : 'callback'
+    }
+    // 覆盖默认参数
+    for(var key in param){
+      defaults[key] = param[key];
+    }
+    // jsonp原理
+    var script = document.createElement('script');
+    var cbName = 'jQuery' + ('v1.11.1' + Math.random()).replace(/\D/g,'') + '_' + (new Date()).getTime();
+    // 覆盖回调函数名称
+    if(defaults.jsonpCallback){
+      cbName = defaults.jsonpCallback;
+    }
+    // 定义回调函数(向window对象添加属性：cbName的值)
+    window[cbName] = function(data){
+      defaults.success(data);
+    }
+    script.src = defaults.url + '?'+defaults.jsonp+'=' + cbName;
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(script);
+  }
+  ajax({
+    url : 'http://doc.studyit.com/data.php',
+    jsonp : 'cb',// 设置等号左侧的名称
+    jsonpCallback : 'hello',// 设置等号右侧的名称（回调函数名称）
+    dataType : 'jsonp',
+    success : function(data){
+      console.log(data.uname);
+    }
+  });
+  </script>
+</head>
+<body>
+  <div>jsonp</div>
+</body>
+</html>

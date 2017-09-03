@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="template-web.js"></script>
+  <script type="text/javascript">
+  /*
+  分支操作总结：
+  分支的应用场景：业务分支（单独的业务线）；开发过程中自己创建的特性分支
+
+  现在远程只有一个master分支，此时如果clone这里的代码，只有master分支代码
+
+  接下来负责人有推送到远程一个teacher分支，如果想获取最新的teacher分支，如何来做？
+
+  先在本地创建一个teacher（和master分支相同），然后把远程分支拉取下来 ：git pull origin teacher
+
+  此时如果一个新员工clone当前的远程仓库，那么该员工会获取整个仓库的代码（包括所有分支的代码，但是只显示master）
+
+  如果此时该员工想操作teacher，需要先创建teacher本地分支，然后把远程teacher分支合并到本地分支中 git merge origin/teacher
+  
+  */
+  </script>
+  <!-- <script type="text/template" id="tpl">
+    <div>{{title}}</div>
+    <ul>
+    {{each list as item index}}
+        <li>{{item}}---{{index+1}}</li>
+    {{/each}}
+    </ul>
+  </script> -->
+  <script type="text/template" id="tpl">
+    <div>{{title}}</div>
+    <div>分类：
+      {{if category == 1}}
+        进口
+      {{else}}
+        国产
+      {{/if}}
+    </div>
+    <ul>
+    {{each objlist}}
+        <li>{{$value.ename}}--{{$value.cname}}-{{$index+1}}</li>
+    {{/each}}
+    </ul>
+  </script>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/javascript">
+  /*
+  模板引擎的作用：模板+数据->静态HTML片段
+  */
+  var data = {
+    category : 2,
+    title : 'fruit',
+    list : ['apple','orange','banana','mango'],
+    objlist : [{ename : 'apple',cname : '苹果'},{ename : 'orange',cname : '橘子'}]
+  }
+
+  var tplstr = '<div>{{title}}</div>'
+            +' <div>分类：'
+            +'   {{if category == 1}}'
+            +'     进口'
+            +'   {{else}}'
+            +'     国产'
+            +'   {{/if}}'
+            +' </div>'
+            +' <ul>'
+            +' {{each objlist}}'
+            +'     <li>{{$value.ename}}--{{$value.cname}}-{{$index+1}}</li>'
+            +' {{/each}}'
+            +' </ul>';
+
+  // var html = template('tpl',data);
+
+  // var render = template.compile(tplstr); // 编译
+  // var html = render(data);
+
+  var html = template.render(tplstr,data);
+
+  $('#container').html(html);
+  </script>
+</body>
+</html>

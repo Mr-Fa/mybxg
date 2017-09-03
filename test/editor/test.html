@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="ckeditor.js"></script>
+
+</head>
+<body>
+  <textarea id="editor"></textarea>
+  <script type="text/javascript">
+    CKEDITOR.replace('editor',{
+      toolbarGroups : [
+          { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+          { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+          { name: 'links', groups: [ 'links' ] }
+        ]
+    });
+  </script>
+</body>
+</html>
